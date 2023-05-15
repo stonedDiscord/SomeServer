@@ -9,10 +9,13 @@ namespace AkashiCore {
         struct ConfigManagerPrivate;
     }
 
-    class ConfigManager
+    class ConfigManager : private QObject
     {
+        Q_OBJECT
+
       private:
         ConfigManager();
+        ~ConfigManager();;
 
         std::unique_ptr<Private::ConfigManagerPrivate> d_ptr;
 
@@ -25,7 +28,10 @@ namespace AkashiCore {
             static ConfigManager instance;
             return instance;
         }
+
+        static bool checkConfiguration();
     };
+
 }
 
 #endif // CONFIG_MANAGER_HPP

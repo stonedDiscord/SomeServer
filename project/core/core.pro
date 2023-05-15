@@ -15,16 +15,22 @@ CONFIG -= \
         debug_and_release_target
 
 DESTDIR = $$PWD/../../bin
+OBJECTS_DIR = $$PWD/../build
+MOC_DIR = $$PWD/../build
 
 HEADERS += \
     include/server.hpp \
     include/server_p.hpp \
     include/network/connection_handler.hpp \
     include/network/connection_handler_p.hpp \
+    include/network/netowrk_socket_i.hpp \
+    include/network/network_socket.hpp \
+    include/network/network_socket_p.hpp \
     include/configuration/config_manager.hpp \
     include/configuration/config_manager_p.hpp
 
 SOURCES += \
     src/server.cpp \
     src/connection_handler.cpp \
-    src/config_manager.cpp
+    src/config_manager.cpp \
+    src/network_socket.cpp

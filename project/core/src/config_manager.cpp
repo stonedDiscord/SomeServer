@@ -9,10 +9,11 @@
 AkashiCore::ConfigManager::ConfigManager() :
     d_ptr(std::make_unique<Private::ConfigManagerPrivate>())
 {
-    d_ptr->m_config = new QSettings("config/config.ini", QSettings::IniFormat);
+    d_ptr->config = new QSettings("config/config.ini", QSettings::IniFormat);
+    d_ptr->config->setIniCodec("UTF-8");
 }
 
-AkashiCore::ConfigManager::~ConfigManager(){}
+AkashiCore::ConfigManager::~ConfigManager() {}
 
 bool AkashiCore::ConfigManager::checkConfiguration()
 {
@@ -28,4 +29,14 @@ bool AkashiCore::ConfigManager::checkConfiguration()
         return false;
     };
     return true;
+}
+
+int AkashiCore::ConfigManager::server_port()
+{
+    return d_ptr->config->value("config/server_port", 0).toInt();
+}
+
+int AkashiCore::ConfigManager::ws_server_port()
+{
+    return d_ptr->config->value("config/ws_server_port", 0).toInt();
 }

@@ -12,6 +12,8 @@ namespace AkashiCore {
     // Accepts and rejects incoming connections and handles their disconnect gracefully.
     class ConnectionHandler : public QObject
     {
+        Q_OBJECT
+
       public:
         ConnectionHandler(QObject *parent);
         ~ConnectionHandler();

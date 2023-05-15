@@ -6,7 +6,7 @@ class QSettings;
 namespace AkashiCore::Private {
     struct ConfigManagerPrivate
     {
-        QSettings *m_config;
+        QSettings *config;
     };
 }
 

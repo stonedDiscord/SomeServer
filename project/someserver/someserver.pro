@@ -1,4 +1,4 @@
-QT       += core
+QT       += core network websockets
 QT       -= gui
 TEMPLATE = app
 

@@ -15,7 +15,8 @@ namespace AkashiCore {
 
       private:
         ConfigManager();
-        ~ConfigManager();;
+        ~ConfigManager();
+        ;
 
         std::unique_ptr<Private::ConfigManagerPrivate> d_ptr;
 
@@ -30,6 +31,9 @@ namespace AkashiCore {
         }
 
         static bool checkConfiguration();
+
+        int server_port();
+        int ws_server_port();
     };
 
 }

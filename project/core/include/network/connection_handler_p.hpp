@@ -3,15 +3,15 @@
 
 #include <memory>
 
-#include <QTcpServer>
-#include <QWebSocketServer>
+class QTcpServer;
+class QWebSocketServer;
 
 namespace AkashiCore::Private {
 
     struct ConnectionHandlerPrivate
     {
-        QTcpServer* m_tcp_server;
-        QWebSocketServer* m_ws_server;
+        QTcpServer *tcp_server;
+        QWebSocketServer *ws_server;
     };
 }
 

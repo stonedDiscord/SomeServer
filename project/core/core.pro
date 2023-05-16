@@ -23,9 +23,8 @@ HEADERS += \
     include/server_p.hpp \
     include/network/connection_handler.hpp \
     include/network/connection_handler_p.hpp \
-    include/network/netowrk_socket_i.hpp \
     include/network/network_socket.hpp \
-    include/network/network_socket_p.hpp \
+    include/interfaces/network_socket_i.hpp \
     include/configuration/config_manager.hpp \
     include/configuration/config_manager_p.hpp
 

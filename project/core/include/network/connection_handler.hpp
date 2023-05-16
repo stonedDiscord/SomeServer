@@ -4,6 +4,8 @@
 #include <QObject>
 #include <memory>
 
+class NetworkSocket;
+
 namespace AkashiCore {
     namespace Private {
         struct ConnectionHandlerPrivate;
@@ -18,8 +20,16 @@ namespace AkashiCore {
         ConnectionHandler(QObject *parent);
         ~ConnectionHandler();
 
+      private slots:
+        void newTCPConnection();
+        void newWebSocketConnection();
+
       private:
         std::unique_ptr<Private::ConnectionHandlerPrivate> d_ptr;
+
+        QVector<NetworkSocket *> m_sockets;
+
+        int active_connections = 0;
     };
 
 };

@@ -1,6 +1,7 @@
 #include "include/network/connection_handler.hpp"
 #include "include/configuration/config_manager.hpp"
 #include "include/network/connection_handler_p.hpp"
+#include "include/network/network_socket.hpp"
 
 #include <QDebug>
 #include <QHostAddress>
@@ -22,6 +23,7 @@ AkashiCore::ConnectionHandler::ConnectionHandler(QObject *parent) :
             qDebug() << "[ConnectionHandler]::CTOR"
                      << "Listening for incoming TCP connection on port"
                      << server_port;
+            connect(d_ptr->tcp_server, &QTcpServer::newConnection, this, &ConnectionHandler::newTCPConnection);
         }
         else {
             qDebug() << "[ConnectionHandler]::CTOR"
@@ -37,6 +39,7 @@ AkashiCore::ConnectionHandler::ConnectionHandler(QObject *parent) :
             qDebug() << "[ConnectionHandler]::CTOR"
                      << "Listening for incoming Websocket connection on port"
                      << ws_server_port;
+            connect(d_ptr->ws_server, &QWebSocketServer::newConnection, this, &ConnectionHandler::newWebSocketConnection);
         }
         else {
             qDebug() << "[ConnectionHandler]::CTOR"
@@ -49,4 +52,24 @@ AkashiCore::ConnectionHandler::~ConnectionHandler()
 {
     qDebug() << "[ConnectionHandler]::DTOR"
              << "Destroying ConnectionHandler";
+}
+
+void AkashiCore::ConnectionHandler::newTCPConnection()
+{
+    qDebug() << "[ConnectionHandler]::TCPConnect"
+             << "Incoming TCP connection.";
+    QTcpSocket *l_new_socket = d_ptr->tcp_server->nextPendingConnection();
+
+    NetworkSocket *l_socket = new AOTCPSocket(this, l_new_socket, active_connections);
+    active_connections++;
+}
+
+void AkashiCore::ConnectionHandler::newWebSocketConnection()
+{
+    qDebug() << "[ConnectionHandler]::WebSocketConnect"
+             << "Incoming Websocket connection.";
+    QWebSocket *l_new_socket = d_ptr->ws_server->nextPendingConnection();
+
+    NetworkSocket *l_socket = new AOWebSocket(this, l_new_socket, active_connections);
+    active_connections++;
 }

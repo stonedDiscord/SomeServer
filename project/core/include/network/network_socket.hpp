@@ -12,7 +12,7 @@ namespace AkashiCore {
         Q_OBJECT
 
       public:
-        AOTCPSocket(QObject *parent, QTcpSocket *f_socket, int f_client_id);
+        AOTCPSocket(QObject *parent, QTcpSocket *f_socket);
         ~AOTCPSocket() {}
 
       private:
@@ -27,7 +27,7 @@ namespace AkashiCore {
         Q_OBJECT
 
       public:
-        AOWebSocket(QObject *parent, QWebSocket *f_socket, int f_client_id);
+        AOWebSocket(QObject *parent, QWebSocket *f_socket);
         ~AOWebSocket() {}
 
       private:

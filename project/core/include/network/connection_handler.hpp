@@ -4,7 +4,9 @@
 #include <QObject>
 #include <memory>
 
-class NetworkSocket;
+namespace AkashiCore {
+    class NetworkSocket;
+};
 
 namespace AkashiCore {
     namespace Private {
@@ -27,9 +29,9 @@ namespace AkashiCore {
       private:
         std::unique_ptr<Private::ConnectionHandlerPrivate> d_ptr;
 
-        QVector<NetworkSocket *> m_sockets;
-
-        int active_connections = 0;
+        // clang-format off
+        QVector<AkashiCore::NetworkSocket*> m_sockets;
+        // clang-format on
     };
 
 };

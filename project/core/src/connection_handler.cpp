@@ -60,8 +60,8 @@ void AkashiCore::ConnectionHandler::newTCPConnection()
              << "Incoming TCP connection.";
     QTcpSocket *l_new_socket = d_ptr->tcp_server->nextPendingConnection();
 
-    NetworkSocket *l_socket = new AOTCPSocket(this, l_new_socket, active_connections);
-    active_connections++;
+    NetworkSocket *l_socket = new AOTCPSocket(this, l_new_socket);
+    m_sockets.append(l_socket);
 }
 
 void AkashiCore::ConnectionHandler::newWebSocketConnection()
@@ -70,6 +70,6 @@ void AkashiCore::ConnectionHandler::newWebSocketConnection()
              << "Incoming Websocket connection.";
     QWebSocket *l_new_socket = d_ptr->ws_server->nextPendingConnection();
 
-    NetworkSocket *l_socket = new AOWebSocket(this, l_new_socket, active_connections);
-    active_connections++;
+    NetworkSocket *l_socket = new AOWebSocket(this, l_new_socket);
+    m_sockets.append(l_socket);
 }

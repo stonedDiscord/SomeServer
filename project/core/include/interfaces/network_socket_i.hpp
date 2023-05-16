@@ -15,9 +15,6 @@ namespace AkashiCore {
 
       signals:
         void dataReceivedByClient(int f_client_id, QString f_message_data);
-
-      protected:
-        int m_client_id;
     };
 }
 

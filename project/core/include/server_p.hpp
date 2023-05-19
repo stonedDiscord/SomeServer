@@ -4,13 +4,18 @@
 #include <memory>
 
 namespace AkashiCore {
- class ConnectionHandler;
+    class ConnectionHandler;
+}
+
+namespace AkashiExternal {
+    class MasterserverClient;
 }
 
 namespace AkashiCore::Private {
     struct ServerPrivate
     {
-        AkashiCore::ConnectionHandler* connection_handler;
+        AkashiCore::ConnectionHandler *connection_handler;
+        AkashiExternal::MasterserverClient *masterserver_client;
     };
 }
 

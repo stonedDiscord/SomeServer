@@ -6,7 +6,7 @@
 
 class QNetworkReply;
 
-namespace AkashiExternal {
+namespace AkashiNetwork {
     namespace Private {
         struct MasterserverPrivate;
     }

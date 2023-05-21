@@ -5,7 +5,7 @@
 #include <QString>
 #include <QTimer>
 
-namespace AkashiExternal::Private {
+namespace AkashiNetwork::Private {
     struct MasterserverPrivate
     {
         QNetworkAccessManager network;

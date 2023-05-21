@@ -5,7 +5,9 @@
 #include <QJsonObject>
 #include <QNetworkReply>
 
-AkashiExternal::MasterserverClient::MasterserverClient(QObject *parent, MS_ClientConfig f_config) :
+using namespace AkashiNetwork;
+
+MasterserverClient::MasterserverClient(QObject *parent, MS_ClientConfig f_config) :
     QObject(parent),
     d_ptr(std::make_unique<Private::MasterserverPrivate>())
 {
@@ -22,22 +24,22 @@ AkashiExternal::MasterserverClient::MasterserverClient(QObject *parent, MS_Clien
     d_ptr.get()->playercount = f_config.playercount;
 
     connect(&d_ptr.get()->network, &QNetworkAccessManager::finished,
-            this, &AkashiExternal::MasterserverClient::on_masterserverReply);
+            this, &MasterserverClient::on_masterserverReply);
     connect(&d_ptr.get()->timer, &QTimer::timeout,
-            this, &AkashiExternal::MasterserverClient::on_advertiseServerRequest);
+            this, &MasterserverClient::on_advertiseServerRequest);
     d_ptr.get()->timer.setTimerType(Qt::TimerType::CoarseTimer);
     d_ptr.get()->timer.setInterval(advertisingInterval);
     d_ptr.get()->timer.start();
     on_advertiseServerRequest();
 }
 
-AkashiExternal::MasterserverClient::~MasterserverClient()
+MasterserverClient::~MasterserverClient()
 {
     qDebug() << "[MASTERSERVER]::DTOR"
              << "Destroying Masterserver Client";
 }
 
-void AkashiExternal::MasterserverClient::on_configReloadRequest(MS_ClientConfig f_config)
+void MasterserverClient::on_configReloadRequest(MS_ClientConfig f_config)
 {
     d_ptr.get()->hostname = f_config.hostname;
     d_ptr.get()->server_name = f_config.server_name;
@@ -50,12 +52,12 @@ void AkashiExternal::MasterserverClient::on_configReloadRequest(MS_ClientConfig 
     d_ptr.get()->playercount = f_config.playercount;
 }
 
-void AkashiExternal::MasterserverClient::on_updatePlayercount(int f_player_count)
+void MasterserverClient::on_updatePlayercount(int f_player_count)
 {
     d_ptr.get()->playercount = f_player_count;
 }
 
-void AkashiExternal::MasterserverClient::on_advertiseServerRequest()
+void MasterserverClient::on_advertiseServerRequest()
 {
     QUrl url(d_ptr.get()->masterserver_hostname);
     QNetworkRequest request(url);
@@ -82,7 +84,7 @@ void AkashiExternal::MasterserverClient::on_advertiseServerRequest()
     d_ptr.get()->network.post(request, QJsonDocument(l_json).toJson());
 }
 
-void AkashiExternal::MasterserverClient::on_masterserverReply(QNetworkReply *f_reply)
+void MasterserverClient::on_masterserverReply(QNetworkReply *f_reply)
 {
     if (f_reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 200) {
         qDebug().noquote() << "[MASTERSERVER]::AdvertiseReply"

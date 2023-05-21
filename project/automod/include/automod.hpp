@@ -1,7 +1,7 @@
 #ifndef AUTOMOD_HPP
 #define AUTOMOD_HPP
 
-namespace AkashiExternal {
+namespace AkashiModerator {
     class AutoModerator
     {
         AutoModerator(){};

@@ -20,7 +20,18 @@ MOC_DIR = $$PWD/../build
 
 HEADERS += \
     masterserver/include/masterserver_client.hpp \
-    masterserver/include/masterserver_client_p.hpp
+    masterserver/include/masterserver_client_p.hpp \
+    aoprotocol/include/packet.hpp \
+    aoprotocol/include/packet_info.hpp \
+    aoprotocol/include/packet_factory.hpp \
+    aoprotocol/include/packets/generic_packet.hpp \
+    aoprotocol/include/packets/hi_packet.hpp \
+    aoprotocol/include/packets/id_packet.hpp
 
 SOURCES += \
-    masterserver/src/masterserver_client.cpp
+    masterserver/src/masterserver_client.cpp \
+    aoprotocol/src/packet.cpp \
+    aoprotocol/src/packet_factory.cpp  \
+    aoprotocol/src/packets/generic_packet.cpp \
+    aoprotocol/src/packets/hi_packet.cpp \
+    aoprotocol/src/packets/id_packet.cpp

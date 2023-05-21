@@ -15,7 +15,7 @@ AkashiCore::ConnectionHandler::ConnectionHandler(QObject *parent) :
     qDebug() << "[ConnectionHandler]::CTOR"
              << "Starting ConnectionHandler";
 
-    int server_port = ConfigManager::getInstance().server_port();
+    int server_port = ConfigManager::getInstance().serverPort();
     if (server_port != 0) {
         d_ptr->tcp_server = new QTcpServer(this);
 
@@ -31,7 +31,7 @@ AkashiCore::ConnectionHandler::ConnectionHandler(QObject *parent) :
         }
     }
 
-    int ws_server_port = ConfigManager::getInstance().ws_server_port();
+    int ws_server_port = ConfigManager::getInstance().wsServerPort();
     if (ws_server_port != 0) {
         d_ptr->ws_server = new QWebSocketServer("akashi", QWebSocketServer::SslMode::NonSecureMode, this);
 

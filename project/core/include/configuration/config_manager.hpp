@@ -32,8 +32,17 @@ namespace AkashiCore {
 
         static bool checkConfiguration();
 
-        int server_port();
-        int ws_server_port();
+        // Config
+        int serverPort();
+        int wsServerPort();
+        QString serverName();
+        QString serverDescription();
+
+        // Advertiser
+        bool enableAdvertiser();
+        bool showDebug();
+        QString masterServerAddress();
+        QString hostname();
     };
 
 }

@@ -6,16 +6,18 @@
 #include <QFile>
 #include <QSettings>
 
-AkashiCore::ConfigManager::ConfigManager() :
+using namespace AkashiCore;
+
+ConfigManager::ConfigManager() :
     d_ptr(std::make_unique<Private::ConfigManagerPrivate>())
 {
     d_ptr->config = new QSettings("config/config.ini", QSettings::IniFormat);
     d_ptr->config->setIniCodec("UTF-8");
 }
 
-AkashiCore::ConfigManager::~ConfigManager() {}
+ConfigManager::~ConfigManager() {}
 
-bool AkashiCore::ConfigManager::checkConfiguration()
+bool ConfigManager::checkConfiguration()
 {
     if (!QDir().exists("config")) {
         qDebug() << "[ConfigManager]::CHECK"
@@ -31,12 +33,42 @@ bool AkashiCore::ConfigManager::checkConfiguration()
     return true;
 }
 
-int AkashiCore::ConfigManager::server_port()
+int ConfigManager::serverPort()
 {
     return d_ptr->config->value("config/server_port", 0).toInt();
 }
 
-int AkashiCore::ConfigManager::ws_server_port()
+int ConfigManager::wsServerPort()
 {
     return d_ptr->config->value("config/ws_server_port", 0).toInt();
+}
+
+QString ConfigManager::serverName()
+{
+    return d_ptr->config->value("config/server_name", "My First Server").toString();
+}
+
+QString ConfigManager::serverDescription()
+{
+    return d_ptr->config->value("config/server_description", "Sample Text").toString();
+}
+
+bool ConfigManager::enableAdvertiser()
+{
+    return d_ptr->config->value("advertiser/advertise", false).toBool();
+}
+
+bool ConfigManager::showDebug()
+{
+    return d_ptr->config->value("advertiser/debug", false).toBool();
+}
+
+QString ConfigManager::masterServerAddress()
+{
+    return d_ptr->config->value("advertiser/ms_ip", "").toString();
+}
+
+QString ConfigManager::hostname()
+{
+    return d_ptr->config->value("advertiser/hostname", "").toString();
 }

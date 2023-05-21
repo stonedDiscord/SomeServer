@@ -23,13 +23,10 @@ HEADERS += \
     include/server_p.hpp \
     include/network/connection_handler.hpp \
     include/network/connection_handler_p.hpp \
-    include/network/network_socket.hpp \
-    include/interfaces/network_socket_i.hpp \
     include/configuration/config_manager.hpp \
     include/configuration/config_manager_p.hpp
 
 SOURCES += \
     src/server.cpp \
     src/connection_handler.cpp \
-    src/config_manager.cpp \
-    src/network_socket.cpp
+    src/config_manager.cpp

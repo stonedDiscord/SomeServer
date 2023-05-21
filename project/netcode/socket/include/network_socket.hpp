@@ -4,16 +4,16 @@
 class QTcpSocket;
 class QWebSocket;
 
-#include "include/interfaces/network_socket_i.hpp"
+#include "../netcode/socket/interfaces/network_socket_i.hpp"
 
-namespace AkashiCore {
+namespace AkashiNetwork {
     class AOTCPSocket : public NetworkSocket
     {
         Q_OBJECT
 
       public:
         AOTCPSocket(QObject *parent, QTcpSocket *f_socket);
-        ~AOTCPSocket() {}
+        ~AOTCPSocket();
 
       private:
         QTcpSocket *m_socket;
@@ -28,7 +28,7 @@ namespace AkashiCore {
 
       public:
         AOWebSocket(QObject *parent, QWebSocket *f_socket);
-        ~AOWebSocket() {}
+        ~AOWebSocket();
 
       private:
         QWebSocket *m_socket;

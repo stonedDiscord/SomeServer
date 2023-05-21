@@ -1,7 +1,7 @@
 #include "include/network/connection_handler.hpp"
+#include "../netcode/socket/include/network_socket.hpp"
 #include "include/configuration/config_manager.hpp"
 #include "include/network/connection_handler_p.hpp"
-#include "include/network/network_socket.hpp"
 
 #include <QDebug>
 #include <QHostAddress>
@@ -60,7 +60,7 @@ void AkashiCore::ConnectionHandler::newTCPConnection()
              << "Incoming TCP connection.";
     QTcpSocket *l_new_socket = d_ptr->tcp_server->nextPendingConnection();
 
-    NetworkSocket *l_socket = new AOTCPSocket(this, l_new_socket);
+    AkashiNetwork::NetworkSocket *l_socket = new AkashiNetwork::AOTCPSocket(this, l_new_socket);
     m_sockets.append(l_socket);
 }
 
@@ -70,6 +70,6 @@ void AkashiCore::ConnectionHandler::newWebSocketConnection()
              << "Incoming Websocket connection.";
     QWebSocket *l_new_socket = d_ptr->ws_server->nextPendingConnection();
 
-    NetworkSocket *l_socket = new AOWebSocket(this, l_new_socket);
+    AkashiNetwork::NetworkSocket *l_socket = new AkashiNetwork::AOWebSocket(this, l_new_socket);
     m_sockets.append(l_socket);
 }

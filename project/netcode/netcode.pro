@@ -1,4 +1,4 @@
-QT += network
+QT += network websockets
 
 TEMPLATE = lib
 
@@ -21,6 +21,10 @@ MOC_DIR = $$PWD/../build
 HEADERS += \
     masterserver/include/masterserver_client.hpp \
     masterserver/include/masterserver_client_p.hpp \
+    \
+    socket/include/network_socket.hpp \
+    socket/interfaces/network_socket_i.hpp \
+    \
     aoprotocol/include/packet.hpp \
     aoprotocol/include/packet_info.hpp \
     aoprotocol/include/packet_factory.hpp \
@@ -30,6 +34,9 @@ HEADERS += \
 
 SOURCES += \
     masterserver/src/masterserver_client.cpp \
+    \
+    socket/src/network_socket.cpp \
+    \
     aoprotocol/src/packet.cpp \
     aoprotocol/src/packet_factory.cpp  \
     aoprotocol/src/packets/generic_packet.cpp \

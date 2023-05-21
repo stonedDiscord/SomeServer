@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-namespace AkashiCore {
+namespace AkashiNetwork {
     class NetworkSocket : public QObject
     {
         Q_OBJECT

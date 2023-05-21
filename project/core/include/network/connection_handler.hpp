@@ -22,6 +22,9 @@ namespace AkashiCore {
         ConnectionHandler(QObject *parent);
         ~ConnectionHandler();
 
+      signals:
+        void newClientConnected(AkashiNetwork::NetworkSocket *f_socket);
+
       private slots:
         void newTCPConnection();
         void newWebSocketConnection();

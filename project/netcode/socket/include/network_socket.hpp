@@ -15,6 +15,9 @@ namespace AkashiNetwork {
         AOTCPSocket(QObject *parent, QTcpSocket *f_socket);
         ~AOTCPSocket();
 
+      public slots:
+        void writeData(const QByteArray f_data) override;
+
       private:
         QTcpSocket *m_socket;
 
@@ -29,6 +32,9 @@ namespace AkashiNetwork {
       public:
         AOWebSocket(QObject *parent, QWebSocket *f_socket);
         ~AOWebSocket();
+
+      public slots:
+        void writeData(const QByteArray f_data) override;
 
       private:
         QWebSocket *m_socket;

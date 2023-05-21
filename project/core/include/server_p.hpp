@@ -5,6 +5,7 @@
 
 namespace AkashiCore {
     class ConnectionHandler;
+    class ClientManager;
 }
 
 namespace AkashiNetwork {
@@ -15,6 +16,7 @@ namespace AkashiCore::Private {
     struct ServerPrivate
     {
         AkashiCore::ConnectionHandler *connection_handler;
+        AkashiCore::ClientManager *client_manager;
         AkashiNetwork::MasterserverClient *masterserver_client;
     };
 }

@@ -61,7 +61,7 @@ void AkashiCore::ConnectionHandler::newTCPConnection()
     QTcpSocket *l_new_socket = d_ptr->tcp_server->nextPendingConnection();
 
     AkashiNetwork::NetworkSocket *l_socket = new AkashiNetwork::AOTCPSocket(this, l_new_socket);
-    m_sockets.append(l_socket);
+    emit newClientConnected(l_socket);
 }
 
 void AkashiCore::ConnectionHandler::newWebSocketConnection()
@@ -71,5 +71,5 @@ void AkashiCore::ConnectionHandler::newWebSocketConnection()
     QWebSocket *l_new_socket = d_ptr->ws_server->nextPendingConnection();
 
     AkashiNetwork::NetworkSocket *l_socket = new AkashiNetwork::AOWebSocket(this, l_new_socket);
-    m_sockets.append(l_socket);
+    emit newClientConnected(l_socket);
 }

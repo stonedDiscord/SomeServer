@@ -11,7 +11,10 @@ namespace AkashiNetwork {
       public:
         NetworkSocket(QObject *parent) :
             QObject(parent){};
-        ~NetworkSocket() = default;
+        ~NetworkSocket(){};
+
+      public slots:
+        virtual void writeData(QByteArray f_data) = 0;
 
       signals:
         void dataReceivedByClient(int f_client_id, QString f_message_data);

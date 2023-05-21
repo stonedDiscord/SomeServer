@@ -1,4 +1,6 @@
 #include <../netcode/masterserver/include/masterserver_client.hpp>
+#include <../netcode/socket/include/network_socket.hpp>
+#include <include/client/client_manager.hpp>
 #include <include/configuration/config_manager.hpp>
 #include <include/network/connection_handler.hpp>
 #include <include/server.hpp>
@@ -13,10 +15,13 @@ AkashiCore::Server::Server(int argc, char *argv[]) :
     qDebug() << "[SERVER]::CTOR"
              << "Starting Server";
     d_ptr.get()->connection_handler = new AkashiCore::ConnectionHandler(this);
+    d_ptr.get()->client_manager = new AkashiCore::ClientManager(this);
 
-    ConfigManager *config = &ConfigManager::getInstance();
+    connect(d_ptr.get()->connection_handler, &ConnectionHandler::newClientConnected,
+            d_ptr.get()->client_manager, &ClientManager::on_newClientConnected);
 
     if (ConfigManager::getInstance().enableAdvertiser()) {
+        ConfigManager *config = &ConfigManager::getInstance();
         AkashiNetwork::MasterserverClient::MS_ClientConfig l_config;
         l_config.server_name = config->serverName();
         l_config.description = config->serverDescription();

@@ -23,6 +23,7 @@ namespace AkashiCore {
 
       public slots:
         void on_newClientConnected(AkashiNetwork::NetworkSocket *l_socket);
+        void on_clientDisconnected(int f_client_id);
 
       private:
         std::unique_ptr<Private::ClientManagerPrivate> d_ptr;

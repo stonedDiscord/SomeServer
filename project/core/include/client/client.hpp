@@ -21,6 +21,9 @@ namespace AkashiCore {
         Client(QObject *parent, AkashiNetwork::NetworkSocket *f_socket, int client_id = -1);
         ~Client();
 
+      signals:
+        void clientDisconnected(int f_client_id);
+
       private:
         std::unique_ptr<Private::ClientPrivate> d_ptr;
     };

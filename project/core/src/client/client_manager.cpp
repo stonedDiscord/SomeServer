@@ -36,5 +36,13 @@ void ClientManager::on_newClientConnected(AkashiNetwork::NetworkSocket *l_socket
     }
 
     auto l_client = new Client(this, l_socket, d_ptr->player_ids.pop());
+    connect(l_client, &Client::clientDisconnected, this, &ClientManager::on_clientDisconnected);
     d_ptr.get()->clients.insert(0, l_client);
+}
+
+void ClientManager::on_clientDisconnected(int f_client_id)
+{
+    d_ptr.get()->player_ids.push(f_client_id);
+    d_ptr.get()->clients[f_client_id]->deleteLater();
+    d_ptr.get()->clients[f_client_id] = nullptr;
 }

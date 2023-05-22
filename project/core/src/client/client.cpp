@@ -13,10 +13,14 @@ AkashiCore::Client::Client(QObject *parent, AkashiNetwork::NetworkSocket *f_sock
     d_ptr.get()->id = client_id;
     d_ptr.get()->socket = f_socket;
     d_ptr.get()->socket->writeData("decryptor#NOENCRYPT#%");
+    connect(d_ptr.get()->socket, &AkashiNetwork::NetworkSocket::disconnected, this, [=] {
+        emit clientDisconnected(d_ptr.get()->id);
+    });
 }
 
 AkashiCore::Client::~Client()
 {
     qDebug() << "[CLIENT]::DTOR"
              << "Destroying Client with id" << d_ptr->id;
+    d_ptr->socket->deleteLater();
 }

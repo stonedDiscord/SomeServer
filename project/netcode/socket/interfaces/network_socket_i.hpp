@@ -20,7 +20,8 @@ namespace AkashiNetwork {
         QHostAddress ip;
 
       public slots:
-        virtual void writeData(QByteArray f_data) = 0;
+        virtual void
+        writeData(QByteArray f_data) = 0;
 
       signals:
         void dataReceivedByClient(int f_client_id, QString f_message_data);

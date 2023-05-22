@@ -1,6 +1,7 @@
 #ifndef CLIENT_MANAGER_PRIVATE_HPP
 #define CLIENT_MANAGER_PRIVATE_HPP
 
+#include <QStack>
 #include <QVector>
 
 namespace AkashiCore {
@@ -11,6 +12,7 @@ namespace AkashiCore {
         struct ClientManagerPrivate
         {
             QVector<AkashiCore::Client *> clients;
+            QStack<int> player_ids;
         };
     }
 }

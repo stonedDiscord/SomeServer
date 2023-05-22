@@ -37,6 +37,7 @@ namespace AkashiCore {
         int wsServerPort();
         QString serverName();
         QString serverDescription();
+        int maxPlayers();
 
         // Advertiser
         bool enableAdvertiser();

@@ -1,6 +1,7 @@
 #ifndef NETWORK_SOCKET_INTERFACE_HPP
 #define NETWORK_SOCKET_INTERFACE_HPP
 
+#include <QHostAddress>
 #include <QObject>
 
 namespace AkashiNetwork {
@@ -13,11 +14,17 @@ namespace AkashiNetwork {
             QObject(parent){};
         ~NetworkSocket(){};
 
+        virtual QHostAddress remoteIP() = 0;
+
+      protected:
+        QHostAddress ip;
+
       public slots:
         virtual void writeData(QByteArray f_data) = 0;
 
       signals:
         void dataReceivedByClient(int f_client_id, QString f_message_data);
+        void disconnected();
     };
 }
 

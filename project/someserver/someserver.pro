@@ -19,8 +19,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 QMAKE_CXXFLAGS_WARN_OFF -= -Wunused-parameter
 
 DESTDIR = $$PWD/../../bin
-OBJECTS_DIR = $$PWD/../build
-MOC_DIR = $$PWD/../build
+OBJECTS_DIR = $$PWD/build
+MOC_DIR = $$PWD/build
 
 SOURCES += main.cpp
 

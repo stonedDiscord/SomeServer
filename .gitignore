@@ -72,6 +72,6 @@ CMakeLists.txt.user*
 *.dll
 *.exe
 
-project/build/*
+project/*/build/*
 bin/config/*
 

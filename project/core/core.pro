@@ -15,8 +15,8 @@ CONFIG -= \
         debug_and_release_target
 
 DESTDIR = $$PWD/../../bin
-OBJECTS_DIR = $$PWD/../build
-MOC_DIR = $$PWD/../build
+OBJECTS_DIR = $$PWD/build
+MOC_DIR = $$PWD/build
 
 HEADERS += \
     include/server.hpp \

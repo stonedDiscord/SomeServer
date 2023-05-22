@@ -1,4 +1,4 @@
-QT += network websockets core
+QT += network websockets
 
 TEMPLATE = lib
 
@@ -19,7 +19,13 @@ OBJECTS_DIR = $$PWD/build
 MOC_DIR = $$PWD/build
 
 HEADERS += \
-    include/automod.hpp
+    include/area.hpp \
+    include/area_manager.hpp \
+    include/area_manager_p.hpp \
+    include/hub_manager.hpp \
+    include/hub_manager_p.hpp
 
 SOURCES += \
-    src/automod.cpp
+    src/area.cpp \
+    src/area_manager.cpp \
+    src/hub_manager.cpp

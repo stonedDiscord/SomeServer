@@ -5,13 +5,11 @@
 #include <memory>
 
 namespace AkashiNetwork {
-    class NetworkSocket;
-};
-
-namespace AkashiCore {
     namespace Private {
         struct ConnectionHandlerPrivate;
     };
+
+    class NetworkSocket;
 
     // Accepts and rejects incoming connections and handles their disconnect gracefully.
     class ConnectionHandler : public QObject
@@ -19,11 +17,11 @@ namespace AkashiCore {
         Q_OBJECT
 
       public:
-        ConnectionHandler(QObject *parent);
+        ConnectionHandler(QObject *parent, int port, int ws_port);
         ~ConnectionHandler();
 
       signals:
-        void newClientConnected(AkashiNetwork::NetworkSocket *f_socket);
+        void newClientConnected(NetworkSocket *f_socket);
 
       private slots:
         void newTCPConnection();
@@ -32,9 +30,7 @@ namespace AkashiCore {
       private:
         std::unique_ptr<Private::ConnectionHandlerPrivate> d_ptr;
 
-        // clang-format off
-        QVector<AkashiNetwork::NetworkSocket*> m_sockets;
-        // clang-format on
+        QVector<NetworkSocket *> m_sockets;
     };
 
 };

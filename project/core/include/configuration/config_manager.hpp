@@ -32,6 +32,9 @@ namespace AkashiCore {
 
         static bool checkConfiguration();
 
+        // Generic
+        QString readTextFile(QString f_file_name);
+
         // Config
         int serverPort();
         int wsServerPort();

@@ -19,18 +19,42 @@ ConfigManager::~ConfigManager() {}
 
 bool ConfigManager::checkConfiguration()
 {
+
+    QStringList l_files = {
+        "config/config.ini",
+        "config/areas.json"};
+
     if (!QDir().exists("config")) {
         qDebug() << "[ConfigManager]::CHECK"
                  << "Configuration folder not found. Make sure to rename config_sample to config!";
         return false;
     }
 
-    if (!QFile::exists("config/config.ini")) {
-        qDebug() << "[ConfigManager]::CHECK"
-                 << "Config.ini not found.";
-        return false;
-    };
-    return true;
+    bool config_folder_complete = true;
+    for (const QString &l_file : l_files) {
+        if (!QFile::exists(l_file)) {
+            qDebug() << "[ConfigManager]::CHECK"
+                     << l_file << "not found.";
+            config_folder_complete = false;
+        }
+    }
+    return config_folder_complete;
+}
+
+QString ConfigManager::readTextFile(QString f_file_name)
+{
+    QFile l_file(f_file_name);
+    if (!l_file.open(QIODevice::ReadOnly)) {
+        qDebug() << "[ConfigManager]::ReadFile"
+                 << "Unable to open file" << f_file_name;
+        return "";
+    }
+    QString l_content = l_file.readAll();
+    if (l_content.isEmpty()) {
+        qDebug() << "[ConfigManager]::ReadFile"
+                 << QStringLiteral("No data read. This might indicate an error... or your file is just empty. Idk man. ¯\\_(ツ)_/¯");
+    }
+    return l_content;
 }
 
 int ConfigManager::serverPort()

@@ -6,7 +6,7 @@
 class QTcpServer;
 class QWebSocketServer;
 
-namespace AkashiCore::Private {
+namespace AkashiNetwork::Private {
 
     struct ConnectionHandlerPrivate
     {

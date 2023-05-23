@@ -4,19 +4,19 @@
 #include <memory>
 
 namespace AkashiCore {
-    class ConnectionHandler;
     class ClientManager;
 }
 
 namespace AkashiNetwork {
+    class ConnectionHandler;
     class MasterserverClient;
 }
 
 namespace AkashiCore::Private {
     struct ServerPrivate
     {
-        AkashiCore::ConnectionHandler *connection_handler;
         AkashiCore::ClientManager *client_manager;
+        AkashiNetwork::ConnectionHandler *connection_handler;
         AkashiNetwork::MasterserverClient *masterserver_client;
     };
 }

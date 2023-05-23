@@ -23,6 +23,8 @@ HEADERS += \
     masterserver/include/masterserver_client_p.hpp \
     \
     socket/include/network_socket.hpp \
+    socket/include/connection_handler.hpp \
+    socket/include/connection_handler_p.hpp \
     socket/interfaces/network_socket_i.hpp \
     \
     aoprotocol/include/packet.hpp \
@@ -36,6 +38,7 @@ SOURCES += \
     masterserver/src/masterserver_client.cpp \
     \
     socket/src/network_socket.cpp \
+    socket/src/connection_handler.cpp \
     \
     aoprotocol/src/packet.cpp \
     aoprotocol/src/packet_factory.cpp  \

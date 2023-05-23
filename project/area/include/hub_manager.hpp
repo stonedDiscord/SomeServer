@@ -14,11 +14,11 @@ namespace AkashiArea {
         Q_OBJECT
 
       public:
-        HubManager(QObject *parent, const QJsonDocument &f_area_list);
+        HubManager(QObject *parent, const QString &f_area_list);
         ~HubManager();
 
       private:
-        std::unique_ptr<Private::HubManagerPrivate> d_ptr;
+        static std::unique_ptr<Private::HubManagerPrivate> d_ptr;
     };
 }
 

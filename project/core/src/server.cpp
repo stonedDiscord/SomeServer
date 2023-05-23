@@ -1,8 +1,8 @@
 #include <../netcode/masterserver/include/masterserver_client.hpp>
-#include <../netcode/socket/include/network_socket.hpp>
+#include <../netcode/socket/include/connection_handler.hpp>
+#include <../netcode/socket/interfaces/network_socket_i.hpp>
 #include <include/client/client_manager.hpp>
 #include <include/configuration/config_manager.hpp>
-#include <include/network/connection_handler.hpp>
 #include <include/server.hpp>
 #include <include/server_p.hpp>
 
@@ -14,10 +14,11 @@ AkashiCore::Server::Server(int argc, char *argv[]) :
 {
     qDebug() << "[SERVER]::CTOR"
              << "Starting Server";
-    d_ptr.get()->connection_handler = new AkashiCore::ConnectionHandler(this);
+    d_ptr.get()->connection_handler = new AkashiNetwork::ConnectionHandler(this,
+                                                                           ConfigManager::getInstance().serverPort(), ConfigManager::getInstance().wsServerPort());
     d_ptr.get()->client_manager = new AkashiCore::ClientManager(this);
 
-    connect(d_ptr.get()->connection_handler, &ConnectionHandler::newClientConnected,
+    connect(d_ptr.get()->connection_handler, &AkashiNetwork::ConnectionHandler::newClientConnected,
             d_ptr.get()->client_manager, &ClientManager::on_newClientConnected);
 
     if (ConfigManager::getInstance().enableAdvertiser()) {

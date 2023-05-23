@@ -1,28 +1,28 @@
-#include "include/network/connection_handler.hpp"
-#include "../netcode/socket/include/network_socket.hpp"
-#include "include/configuration/config_manager.hpp"
-#include "include/network/connection_handler_p.hpp"
+#include "socket/include/connection_handler.hpp"
+#include "socket/include//connection_handler_p.hpp"
+#include "socket/include/network_socket.hpp"
 
 #include <QDebug>
 #include <QHostAddress>
 #include <QTcpServer>
 #include <QWebSocketServer>
 
-AkashiCore::ConnectionHandler::ConnectionHandler(QObject *parent) :
+using namespace AkashiNetwork;
+
+ConnectionHandler::ConnectionHandler(QObject *parent, int port, int ws_port) :
     QObject(parent),
-    d_ptr(std::make_unique<AkashiCore::Private::ConnectionHandlerPrivate>())
+    d_ptr(std::make_unique<Private::ConnectionHandlerPrivate>())
 {
     qDebug() << "[ConnectionHandler]::CTOR"
              << "Starting ConnectionHandler";
 
-    int server_port = ConfigManager::getInstance().serverPort();
-    if (server_port != 0) {
+    if (port != 0) {
         d_ptr->tcp_server = new QTcpServer(this);
 
-        if (d_ptr->tcp_server->listen(QHostAddress::LocalHost, server_port)) {
+        if (d_ptr->tcp_server->listen(QHostAddress::LocalHost, port)) {
             qDebug() << "[ConnectionHandler]::CTOR"
                      << "Listening for incoming TCP connection on port"
-                     << server_port;
+                     << port;
             connect(d_ptr->tcp_server, &QTcpServer::newConnection, this, &ConnectionHandler::newTCPConnection);
         }
         else {
@@ -31,14 +31,13 @@ AkashiCore::ConnectionHandler::ConnectionHandler(QObject *parent) :
         }
     }
 
-    int ws_server_port = ConfigManager::getInstance().wsServerPort();
-    if (ws_server_port != 0) {
+    if (ws_port != 0) {
         d_ptr->ws_server = new QWebSocketServer("akashi", QWebSocketServer::SslMode::NonSecureMode, this);
 
-        if (d_ptr->ws_server->listen(QHostAddress::LocalHost, ws_server_port)) {
+        if (d_ptr->ws_server->listen(QHostAddress::LocalHost, ws_port)) {
             qDebug() << "[ConnectionHandler]::CTOR"
                      << "Listening for incoming Websocket connection on port"
-                     << ws_server_port;
+                     << ws_port;
             connect(d_ptr->ws_server, &QWebSocketServer::newConnection, this, &ConnectionHandler::newWebSocketConnection);
         }
         else {
@@ -48,13 +47,13 @@ AkashiCore::ConnectionHandler::ConnectionHandler(QObject *parent) :
     }
 }
 
-AkashiCore::ConnectionHandler::~ConnectionHandler()
+AkashiNetwork::ConnectionHandler::~ConnectionHandler()
 {
     qDebug() << "[ConnectionHandler]::DTOR"
              << "Destroying ConnectionHandler";
 }
 
-void AkashiCore::ConnectionHandler::newTCPConnection()
+void AkashiNetwork::ConnectionHandler::newTCPConnection()
 {
     qDebug() << "[ConnectionHandler]::TCPConnect"
              << "Incoming TCP connection.";
@@ -64,7 +63,7 @@ void AkashiCore::ConnectionHandler::newTCPConnection()
     emit newClientConnected(l_socket);
 }
 
-void AkashiCore::ConnectionHandler::newWebSocketConnection()
+void AkashiNetwork::ConnectionHandler::newWebSocketConnection()
 {
     qDebug() << "[ConnectionHandler]::WebSocketConnect"
              << "Incoming Websocket connection.";

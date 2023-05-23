@@ -25,14 +25,11 @@ HEADERS += \
     include/client/client_manager_p.hpp \
     include/client/client.hpp \
     include/client/client_p.hpp \
-    include/network/connection_handler.hpp \
-    include/network/connection_handler_p.hpp \
     include/configuration/config_manager.hpp \
     include/configuration/config_manager_p.hpp
 
 SOURCES += \
     src/server.cpp \
-    src/connection_handler.cpp \
     src/config_manager.cpp \
     src/client/client_manager.cpp \
     src/client/client.cpp

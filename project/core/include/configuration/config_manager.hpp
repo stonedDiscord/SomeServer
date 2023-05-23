@@ -16,13 +16,11 @@ namespace AkashiCore {
       private:
         ConfigManager();
         ~ConfigManager();
-        ;
 
         std::unique_ptr<Private::ConfigManagerPrivate> d_ptr;
 
       public:
-        ConfigManager(ConfigManager const &) = delete;
-        void operator=(ConfigManager const &) = delete;
+        Q_DISABLE_COPY_MOVE(ConfigManager);
 
         static ConfigManager &getInstance()
         {

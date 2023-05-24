@@ -1,5 +1,6 @@
 QT       += core network websockets
 QT       -= gui
+CONFIG   += console
 TEMPLATE = app
 
 unix:CONFIG += c++1z console

@@ -1,10 +1,18 @@
 #ifndef AREA_MANAGER_PRIVATE_HPP
 #define AREA_MANAGER_PRIVATE_HPP
 
-namespace AkashiArea::Private {
-    struct AreaManagerPrivate
-    {
-    };
+#include <QVector>
+
+namespace AkashiArea {
+    class Area;
+
+    namespace Private {
+        struct AreaManagerPrivate
+        {
+            QString hub_name;
+            QVector<Area *> areas;
+        };
+    }
 }
 
 #endif // AREA_MANAGER_PRIVATE_HPP

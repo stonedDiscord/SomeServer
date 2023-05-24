@@ -14,7 +14,7 @@ namespace AkashiArea {
         Q_OBJECT
 
       public:
-        AreaManager(QObject *parent);
+        AreaManager(QObject *parent, const QString &f_hub_name, const QJsonArray &f_area_array);
         ~AreaManager();
 
       private:

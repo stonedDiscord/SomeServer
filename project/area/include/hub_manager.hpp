@@ -14,8 +14,10 @@ namespace AkashiArea {
         Q_OBJECT
 
       public:
-        HubManager(QObject *parent, const QString &f_area_list);
+        HubManager(QObject *parent);
         ~HubManager();
+
+        void loadAreaList(const QString &f_area_list);
 
       private:
         static std::unique_ptr<Private::HubManagerPrivate> d_ptr;

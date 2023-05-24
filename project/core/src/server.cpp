@@ -1,3 +1,4 @@
+#include <../area/include/hub_manager.hpp>
 #include <../netcode/masterserver/include/masterserver_client.hpp>
 #include <../netcode/socket/include/connection_handler.hpp>
 #include <../netcode/socket/interfaces/network_socket_i.hpp>
@@ -32,6 +33,9 @@ AkashiCore::Server::Server(int argc, char *argv[]) :
         l_config.hostname = config->hostname();
         d_ptr.get()->masterserver_client = new AkashiNetwork::MasterserverClient(this, l_config);
     }
+
+    d_ptr.get()->hub_manager = new AkashiArea::HubManager(this);
+    d_ptr.get()->hub_manager->loadAreaList(ConfigManager::getInstance().readTextFile("config/areas.json"));
 }
 
 AkashiCore::Server::~Server()

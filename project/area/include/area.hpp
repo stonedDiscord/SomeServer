@@ -1,12 +1,20 @@
 #ifndef AREA_HPP
 #define AREA_HPP
 
+class QJsonObject;
+
 #include <QJsonObject>
+#include <QObject>
+#include <QString>
+#include <QVector>
 
 namespace AkashiArea {
-    class Area
+    class Area : public QObject
     {
-        Area(const QJsonObject &f_area_config);
+        Q_OBJECT
+
+      public:
+        Area(QObject *parent, const QJsonObject &f_area_config);
         ~Area();
 
         void setAreaName(const QString &f_area_name);

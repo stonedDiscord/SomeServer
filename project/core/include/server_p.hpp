@@ -12,12 +12,17 @@ namespace AkashiNetwork {
     class MasterserverClient;
 }
 
+namespace AkashiArea {
+    class HubManager;
+}
+
 namespace AkashiCore::Private {
     struct ServerPrivate
     {
         AkashiCore::ClientManager *client_manager;
         AkashiNetwork::ConnectionHandler *connection_handler;
         AkashiNetwork::MasterserverClient *masterserver_client;
+        AkashiArea::HubManager *hub_manager;
     };
 }
 

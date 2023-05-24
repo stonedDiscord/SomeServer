@@ -1,10 +1,17 @@
 #include "include/area.hpp"
 
+#include <QDebug>
+#include <QJsonObject>
+#include <QObject>
+
 using namespace AkashiArea;
 
-Area::Area(const QJsonObject &f_area_entry) :
-    name(f_area_entry["name"].toString())
+Area::Area(QObject *parent, const QJsonObject &f_area_entry) :
+    QObject(parent),
+    name(f_area_entry.value("area_name").toString())
 {
+    qDebug() << "[AREA]::CTOR"
+             << "Creating area" << name;
 }
 
 Area::~Area()

@@ -25,8 +25,8 @@ MOC_DIR = $$PWD/build
 
 SOURCES += main.cpp
 
-win32: LIBS += -L$$PWD/../../bin/ -lcore -lnetcode
-else:unix: LIBS += -L$$PWD/../../bin/ -lcore -lnetcode
+win32: LIBS += -L$$PWD/../../bin/ -lcore -lnetcode -larea
+else:unix: LIBS += -L$$PWD/../../bin/ -lcore -lnetcode -larea
 
 INCLUDEPATH += $$PWD/../core
 

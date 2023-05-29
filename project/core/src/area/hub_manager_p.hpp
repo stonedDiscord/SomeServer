@@ -3,17 +3,15 @@
 
 #include <QVector>
 
-namespace AkashiArea
-{
-class AreaManager;
+namespace AkashiArea {
+    class AreaManager;
 
-namespace Private
-{
-struct HubManagerPrivate
-{
-  QVector<AreaManager *> l_hubs;
-};
-} // namespace Private
+    namespace Private {
+        struct HubManagerPrivate
+        {
+            QVector<AreaManager *> l_hubs;
+        };
+    } // namespace Private
 } // namespace AkashiArea
 
 #endif // HUB_MANAGER_PRIVATE_HPP

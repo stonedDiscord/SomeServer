@@ -3,12 +3,11 @@
 
 class QSettings;
 
-namespace AkashiCore::Private
-{
-struct ConfigManagerPrivate
-{
-  QSettings *config;
-};
+namespace AkashiCore::Private {
+    struct ConfigManagerPrivate
+    {
+        QSettings *config;
+    };
 } // namespace AkashiCore::Private
 
 #endif // CONFIG_MANAGER_PRIVATE_HPP

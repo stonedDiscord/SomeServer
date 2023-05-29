@@ -5,32 +5,32 @@
 
 class QWebSocket;
 
-namespace AkashiNetwork
-{
-class AOWebSocket : public NetworkSocket
-{
-  Q_OBJECT
+namespace AkashiNetwork {
+    class AOWebSocket : public NetworkSocket
+    {
+        Q_OBJECT
 
-public:
-  AOWebSocket(QObject *parent, QWebSocket *f_socket);
-  ~AOWebSocket();
+      public:
+        AOWebSocket(QObject *parent, QWebSocket *f_socket);
+        ~AOWebSocket();
 
-  QHostAddress remoteIP() override;
+        QHostAddress remoteIP() override;
 
-  QString pendingData() override;
+        QString pendingData() override;
 
-public slots:
-  void writeData(const QByteArray f_data) override;
+      public slots:
+        void writeData(const QByteArray f_data) override;
 
-private:
-  QWebSocket *m_socket;
-  QString m_buffer;
+      private:
+        QWebSocket *m_socket;
+        QString m_buffer;
 
-private slots:
-  void receiveData(QString f_data = "");
+      private slots:
+        void receiveData(QString f_data = "");
 
-  // NetworkSocket interface
-public:
-};
+        // NetworkSocket interface
+
+      public:
+    };
 } // namespace AkashiNetwork
 #endif // AOWEBSOCKET_HPP

@@ -6,36 +6,34 @@
 #include <QObject>
 #include <memory>
 
-namespace AkashiNetwork
-{
-namespace Private
-{
-struct ConnectionHandlerPrivate;
-}; // namespace Private
+namespace AkashiNetwork {
+    namespace Private {
+        struct ConnectionHandlerPrivate;
+    }; // namespace Private
 
-class NetworkSocket;
+    class NetworkSocket;
 
-// Accepts and rejects incoming connections and handles their disconnect gracefully.
-class ConnectionHandler : public QObject
-{
-  Q_OBJECT
+    // Accepts and rejects incoming connections and handles their disconnect gracefully.
+    class ConnectionHandler : public QObject
+    {
+        Q_OBJECT
 
-public:
-  ConnectionHandler(QObject *parent, int port, int ws_port);
-  ~ConnectionHandler();
+      public:
+        ConnectionHandler(QObject *parent, int port, int ws_port);
+        ~ConnectionHandler();
 
-signals:
-  void newClientConnected(NetworkSocket *f_socket);
+      signals:
+        void newClientConnected(NetworkSocket *f_socket);
 
-private:
-  std::unique_ptr<Private::ConnectionHandlerPrivate> d_ptr;
+      private:
+        std::unique_ptr<Private::ConnectionHandlerPrivate> d_ptr;
 
-  QVector<NetworkSocket *> m_sockets;
+        QVector<NetworkSocket *> m_sockets;
 
-private slots:
-  void handleTcpConnection();
-  void handleWebConnection();
-};
+      private slots:
+        void handleTcpConnection();
+        void handleWebConnection();
+    };
 
 }; // namespace AkashiNetwork
 

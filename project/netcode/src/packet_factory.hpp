@@ -2,31 +2,29 @@
 
 #include <map>
 
-namespace AkashiNetwork
-{
-class PacketFactory
-{
-public:
-  static bool canCreatePacket(QString header);
-  static AOPacket *createPacket(QString header, QStringList content);
+namespace AkashiNetwork {
+    class PacketFactory
+    {
+      public:
+        static bool canCreatePacket(QString header);
+        static AOPacket *createPacket(QString header, QStringList content);
 
-  void registerPacket(AOPacket *(*builder)(QStringList content));
+        void registerPacket(AOPacket *(*builder)(QStringList content));
 
-  template <typename T>
-  void registerPacket()
-  {
-    registerPacket(&PacketFactory::newPacket<T>);
-  }
+        template <typename T>
+        void registerPacket()
+        {
+            registerPacket(&PacketFactory::newPacket<T>);
+        }
 
-private:
-  static std::map<QString, AOPacket *(*)(QStringList)> m_builder_map;
+      private:
+        static std::map<QString, AOPacket *(*)(QStringList)> m_builder_map;
 
-  template <typename T>
-  AOPacket *newPacket(QStringList content)
-  {
-    AOPacket *packet = new T;
-    packet->setContent(content);
-    return packet;
-  }
-};
+        template <typename T>
+        AOPacket *newPacket(QStringList content)
+        {
+            AOPacket *packet = new T(content);
+            return packet;
+        }
+    };
 } // namespace AkashiNetwork

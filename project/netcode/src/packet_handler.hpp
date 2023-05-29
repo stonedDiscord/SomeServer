@@ -5,25 +5,24 @@
 
 #include <QObject>
 
-namespace AkashiNetwork
-{
-class PacketHandler : public QObject
-{
-  Q_OBJECT
+namespace AkashiNetwork {
+    class PacketHandler : public QObject
+    {
+        Q_OBJECT
 
-public:
-  explicit PacketHandler(NetworkSocket *socket, QObject *parent = nullptr);
+      public:
+        explicit PacketHandler(NetworkSocket *socket, QObject *parent = nullptr);
 
-  void sendPacket(AOPacket *packet);
+        void sendPacket(AOPacket *packet);
 
-signals:
-  void packetReceived(AOPacket *packet);
+      signals:
+        void packetReceived(AOPacket *packet);
 
-private:
-  NetworkSocket *m_socket;
-  QString m_buffer;
+      private:
+        NetworkSocket *m_socket;
+        QString m_buffer;
 
-private slots:
-  void handleSocketData();
-};
+      private slots:
+        void handleSocketData();
+    };
 } // namespace AkashiNetwork

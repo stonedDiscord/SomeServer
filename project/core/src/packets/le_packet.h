@@ -3,12 +3,11 @@
 
 #include <qglobal.h>
 
-namespace AkashiNetwork
-{
-class PacketLE
-{
-public:
-  PacketLE();
-};
+namespace AkashiNetwork {
+    class PacketLE
+    {
+      public:
+        PacketLE();
+    };
 } // namespace AkashiNetwork
 #endif // LE_PACKET_HPP

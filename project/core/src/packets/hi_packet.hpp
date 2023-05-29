@@ -3,17 +3,16 @@
 
 #include "packet.hpp"
 
-namespace AkashiNetwork
-{
-class PacketHI : public AOPacket
-{
-public:
-  PacketHI(QStringList &contents);
-  virtual PacketInfo getPacketInfo() const;
-  virtual bool validatePacket() const;
+namespace AkashiNetwork {
+    class PacketHI : public AOPacket
+    {
+      public:
+        PacketHI(QStringList &contents);
+        virtual PacketInfo getPacketInfo() const;
+        virtual bool validatePacket() const;
 
-private:
-  QString header;
-};
+      private:
+        QString header;
+    };
 } // namespace AkashiNetwork
 #endif

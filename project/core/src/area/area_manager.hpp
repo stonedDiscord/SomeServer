@@ -5,34 +5,32 @@
 
 #include <QObject>
 
-namespace AkashiArea
-{
-namespace Private
-{
-struct AreaManagerPrivate;
-} // namespace Private
+namespace AkashiArea {
+    namespace Private {
+        struct AreaManagerPrivate;
+    } // namespace Private
 
-class AreaManager : public QObject
-{
-  Q_OBJECT
+    class AreaManager : public QObject
+    {
+        Q_OBJECT
 
-public:
-  AreaManager(QObject *parent, const QString &f_hub_name, const QJsonArray &f_area_array);
-  ~AreaManager();
+      public:
+        AreaManager(QObject *parent, const QString &f_hub_name, const QJsonArray &f_area_array);
+        ~AreaManager();
 
-private:
-  std::unique_ptr<Private::AreaManagerPrivate> d_ptr;
-};
+      private:
+        std::unique_ptr<Private::AreaManagerPrivate> d_ptr;
+    };
 
-class AreaGroup
-{
-public:
-  QString getName();
+    class AreaGroup
+    {
+      public:
+        QString getName();
 
-  QList<Area *> getAreaList();
+        QList<Area *> getAreaList();
 
-  void load(QString file);
-};
+        void load(QString file);
+    };
 
 } // namespace AkashiArea
 

@@ -29,6 +29,8 @@ namespace AkashiCore {
         AkashiNetwork::MasterserverClient *masterserver_client;
         AkashiArea::HubManager *hub_manager;
         AkashiCore::ClientManager *client_manager;
+
+        void registerPackets();
     };
 } // namespace AkashiCore
 

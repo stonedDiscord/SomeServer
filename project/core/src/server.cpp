@@ -6,6 +6,9 @@
 #include <interfaces/network_socket_i.hpp>
 #include <server.hpp>
 
+#include "packet_factory.hpp"
+#include "packets/hi_packet.hpp"
+
 #include <QDebug>
 #include <QJsonDocument>
 
@@ -35,6 +38,9 @@ AkashiCore::Server::Server(int argc, char *argv[]) :
         l_config.hostname = config->hostname();
         masterserver_client = new AkashiNetwork::MasterserverClient(this, l_config);
     }
+
+    AkashiNetwork::PacketFactory factory;
+    factory.registerPacket([](QStringList content) -> AkashiNetwork::AOPacket * { return new AkashiNetwork::PacketHI(content); });
 }
 
 AkashiCore::Server::~Server()

@@ -11,20 +11,7 @@ namespace AkashiNetwork {
 
         void registerPacket(AOPacket *(*builder)(QStringList content));
 
-        template <typename T>
-        void registerPacket()
-        {
-            registerPacket(&PacketFactory::newPacket<T>);
-        }
-
       private:
         static std::map<QString, AOPacket *(*)(QStringList)> m_builder_map;
-
-        template <typename T>
-        AOPacket *newPacket(QStringList content)
-        {
-            AOPacket *packet = new T(content);
-            return packet;
-        }
     };
 } // namespace AkashiNetwork

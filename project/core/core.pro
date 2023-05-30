@@ -7,10 +7,10 @@ TEMPLATE = lib
 unix: CONFIG += shared static c++17
 win32: CONFIG+= shared static c++17
 
-win32: LIBS += -L$$PWD/../../bin/ -lnetcode
-else:unix: LIBS += -L$$PWD/../../bin/ -lnetcode
+win32: LIBS += -L$$PWD/../../bin/ -lnet
+else:unix: LIBS += -L$$PWD/../../bin/ -lnet
 
-INCLUDEPATH += $$PWD/src $$PWD/../netcode/src
+INCLUDEPATH += $$PWD/src $$PWD/../net/src
 
 # Needed so that Windows doesn't do `release/` and `debug/` subfolders
 # in the output directory.

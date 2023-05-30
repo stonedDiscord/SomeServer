@@ -25,4 +25,5 @@ namespace AkashiNetwork {
         m_builder_map[info.header] = builder;
         delete packet;
     }
+
 } // namespace AkashiNetwork

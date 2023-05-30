@@ -3,10 +3,10 @@ TEMPLATE = subdirs
 SUBDIRS += \
     core \
     someserver \
-    netcode
+    net
 
 core.subdir = project/core
-core.depends = netcode
+core.depends = net
 someserver.subdir = project/someserver
-someserver.depends = core netcode
-netcode.subdir = project/netcode
+someserver.depends = core net
+net.subdir = project/net
